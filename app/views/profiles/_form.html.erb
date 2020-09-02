@@ -1,0 +1,25 @@
+<%= form_with model: @profile, local: true do |f| %>
+
+    <%= f.label :name, "名前" %><br />
+    <%= f.text_field :name %>
+
+    <%= f.label :learning_history, "学習歴(年)" %><br />
+    <%= f.number_field :learning_history %><br />
+
+    <%= f.label :purpose, "目的" %><br />
+    <%= f.text_field :purpose %>
+
+    <%= f.label :image, "プロフィール写真" %><br />
+    <%= f.file_field :image %>
+
+    <% if f.object.image.attached? %>
+      <p>現在のプロフィール画像</p>
+      <div class="image-preview">
+        <%= image_tag f.object.image %>
+      </div>
+    <% end %>
+    <div class="submit-block">
+      <%= f.submit "作成", class: "btn" %>
+    </div>
+
+<% end %>

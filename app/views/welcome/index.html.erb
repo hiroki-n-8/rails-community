@@ -1,0 +1,51 @@
+<% if current_user.present? %>
+  <%= "ログイン中：#{current_user.name}" %>
+<% end %>
+<div class="content-wrapper">
+  <div class="content-block">
+    <% @posts.each do |p| %>
+      <div class="content">
+        <div class="user-about">
+          <div class="image">
+            <% if p.user.image.attached? %>
+              <%= image_tag p.user.image %>
+            <% else %>
+              <%= image_tag "nouser.png" %>
+            <% end %>
+          </div>
+          <div class="profile">
+            <div class="name-history">
+              <div class="name">
+                <%= p.user.name %>
+              </div>
+              <div class="learning-history">
+                <%= "学習歴：　#{p.user.learning_history}１年" %>
+              </div>
+            </div>
+            <div class="purpose">
+            <%= "目的： #{p.user.purpose}" %>
+            </div>
+          </div>
+        </div>
+        <div class="text">
+          <p><%= p.content %></p>
+        </div>
+        <% if p.images.attached? %>
+          <div class="images">
+            <% p.images.each do |image| %>
+              <%= image_tag image %>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="action-menu">
+          <div class="like"></div>
+          <div class="comment"></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="sidebar">
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+</div>
